@@ -9,9 +9,11 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>tran-increase-app</module>
+        <module>tran-increase-from/increase-from-api</module>
         <module>tran-increase-basics/increase-basics-api</module>
+        <module>tran-increase-from/increase-from-impl</module>
         <module>tran-increase-basics/increase-basics-impl</module>
+        <module>tran-increase-app</module>
     </modules>
 
     <properties>
