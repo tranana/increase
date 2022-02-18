@@ -10,6 +10,8 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>tran-increase-app</module>
+        <module>tran-increase-basics/increase-basics-api</module>
+        <module>tran-increase-basics/increase-basics-impl</module>
     </modules>
 
     <properties>
