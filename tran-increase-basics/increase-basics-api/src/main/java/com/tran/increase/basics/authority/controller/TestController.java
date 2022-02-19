@@ -21,7 +21,7 @@ public class TestController {
 
     @RequestMapping("/get")
     public String session(){
-        return authorityService.get();
+        return "{}";
     }
 
 }
