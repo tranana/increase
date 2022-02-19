@@ -24,7 +24,6 @@
             <artifactId>increase-basics-impl</artifactId>
             <version>${increase-basics.version}</version>
         </dependency>
-
     </dependencies>
 
 </project>
