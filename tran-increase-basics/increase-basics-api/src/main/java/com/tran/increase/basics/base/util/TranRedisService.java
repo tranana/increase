@@ -13,7 +13,7 @@ import redis.clients.jedis.Jedis;
  * 2022/2/19
  */
 @Component
-public class TranRedisUtil {
+public class TranRedisService {
 
     @Autowired
     private RedisPoolFactory redisPoolFactory;
@@ -29,8 +29,23 @@ public class TranRedisUtil {
         Jedis jedis = null;
         try {
             jedis = redisPoolFactory.JedisPoolFactory().getResource();
-            String value = jedis.get(tranRedisPrefix.expirationTime()+key);
+            String value = jedis.get(tranRedisPrefix.prefix+key);
             return stringToBean(value,clazz);
+        }finally {
+            resultsJedisPool(jedis);
+        }
+    }
+
+    /**
+     * 获取值
+     * @param key
+     * @return
+     */
+    public  String getString(TranRedisPrefix tranRedisPrefix, String key){
+        Jedis jedis = null;
+        try {
+            jedis = redisPoolFactory.JedisPoolFactory().getResource();
+            return jedis.get(tranRedisPrefix.prefix+key);
         }finally {
             resultsJedisPool(jedis);
         }
@@ -51,10 +66,10 @@ public class TranRedisUtil {
             jedis = redisPoolFactory.JedisPoolFactory().getResource();
             strValue = beanToValue(value);
             if (StrUtil.isNotBlank(strValue)){
-                if (tranRedisPrefix.expirationTime() <= 0){
-                    jedis.set(tranRedisPrefix.prefix()+key,strValue);
+                if (tranRedisPrefix.expirationTime <= 0){
+                    jedis.set(tranRedisPrefix.prefix+key,strValue);
                 }else {
-                    jedis.setex(tranRedisPrefix.prefix()+key,tranRedisPrefix.expirationTime(),strValue);
+                    jedis.setex(tranRedisPrefix.prefix+key,tranRedisPrefix.expirationTime,strValue);
                 }
             }
         }finally {
@@ -73,7 +88,7 @@ public class TranRedisUtil {
         Jedis jedis = null;
         try {
             jedis = redisPoolFactory.JedisPoolFactory().getResource();
-            return jedis.exists(tranRedisPrefix.prefix()+key);
+            return jedis.exists(tranRedisPrefix.prefix+key);
         }finally {
             resultsJedisPool(jedis);
         }
@@ -89,7 +104,7 @@ public class TranRedisUtil {
         Jedis jedis = null;
         try {
             jedis = redisPoolFactory.JedisPoolFactory().getResource();
-            return jedis.incr(tranRedisPrefix.prefix()+key);
+            return jedis.incr(tranRedisPrefix.prefix+key);
         }finally {
             resultsJedisPool(jedis);
         }
@@ -105,10 +120,21 @@ public class TranRedisUtil {
         Jedis jedis = null;
         try {
             jedis = redisPoolFactory.JedisPoolFactory().getResource();
-            return jedis.decr(tranRedisPrefix.prefix()+key);
+            return jedis.decr(tranRedisPrefix.prefix+key);
         }finally {
             resultsJedisPool(jedis);
         }
+    }
+
+    /**
+     * 刷新 key 的时长
+     * @param tranRedisPrefix
+     * @param key
+     * @return
+     */
+    public Long  refresh(TranRedisPrefix tranRedisPrefix, String key){
+
+        return 0L;
     }
 
     /**

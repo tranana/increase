@@ -11,6 +11,7 @@ public  class AuthorityResult extends TranResult {
 
     public final static AuthorityResult  AUTHORITY_SUCCEED = ok();
     public final static  AuthorityResult  AUTHORITY_ERROR = error();
+    public final static  AuthorityResult  AUTHORITY_ERROR_USER_NO = error(100002,"用户不存在");
 
 
     /**

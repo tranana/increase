@@ -1,23 +1,36 @@
 package com.tran.increase.basics.base.configbean;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 /**
  * @author luxiangqian
  * 2022/2/20
  */
-public interface TranRedisPrefix {
+@Data
+public class TranRedisPrefix {
 
     /**
      * 过期时间
      * @return 过期时间
      */
-    int expirationTime();
+    public int expirationTime;
 
     /**
      * 设置前缀
      * @return 前缀
      */
-    String prefix();
+    public String prefix;
 
+
+    public TranRedisPrefix(String prefix,int expirationTime) {
+        this.expirationTime = expirationTime;
+        this.prefix = prefix;
+    }
+
+    public TranRedisPrefix(String prefix) {
+        this.prefix = prefix;
+    }
 
 
 

@@ -3,6 +3,7 @@ package com.tran.increase.basics.base.util;
 import org.springframework.stereotype.Component;
 
 /**
+ * 字符工具类
  * @author luxiangqian
  * 2022/2/18
  */

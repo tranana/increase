@@ -1,5 +1,6 @@
 package com.tran.increase.basics.global;
 
+import com.tran.increase.basics.base.result.AuthorityDTO;
 import com.tran.increase.basics.base.result.AuthorityResult;
 
 import java.util.List;
@@ -14,25 +15,16 @@ public interface Authority {
 
     /**
      * 获取用户下所有权限信息
-     * @param userID 用户id
      * @return
      */
-    List<Map<String,Object>> getAuthorityInfo(String userID);
+    List<Map<String,Object>> getAuthorityInfo(AuthorityDTO authorityDTO);
 
 
-    /**
-     * 给用户某一种添加权限
-     * @param userID 用户id
-     * @param name 定义的权限名称
-     * @return
-     */
-    AuthorityResult addUserAuthority(String userID,String name);
 
     /**
-     * 删除用户权限
-     * @param userID 用户id
-     * @param name 定义的权限名称
+     * 更新用户权限
+
      * @return
      */
-    AuthorityResult delUserAuthority(String userID,String name);
+    AuthorityResult updateUserAuthority(AuthorityDTO authorityDTO);
 }
