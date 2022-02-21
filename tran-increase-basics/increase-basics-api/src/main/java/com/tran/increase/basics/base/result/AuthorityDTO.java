@@ -3,11 +3,12 @@ package com.tran.increase.basics.base.result;
 import lombok.Data;
 
 /**
+ * 公共权限抽象类
  * @author luxiangqian
  * 2022/2/20
  */
 @Data
-public abstract class AuthorityDTO {
+public  class AuthorityDTO extends BaseAuthority{
 
     /**
      * 用户ID 分隔

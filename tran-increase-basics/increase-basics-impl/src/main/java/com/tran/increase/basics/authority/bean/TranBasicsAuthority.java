@@ -22,7 +22,7 @@ public class TranBasicsAuthority {
     /**
      * id
      */
-    @TableId("user_id")
+    @TableField("user_id")
     private String userId;
 
     /**

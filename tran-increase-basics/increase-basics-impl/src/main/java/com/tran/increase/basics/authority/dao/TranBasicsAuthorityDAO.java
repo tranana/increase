@@ -2,11 +2,11 @@ package com.tran.increase.basics.authority.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.tran.increase.basics.authority.bean.TranBasicsAuthority;
+import com.tran.increase.basics.base.result.AuthorityDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 权限
@@ -21,7 +21,7 @@ public interface TranBasicsAuthorityDAO extends BaseMapper<TranBasicsAuthority> 
      *
      * @return
      */
-    List<Map<String, Object>> getAuthorityByUserId(@Param("userId")String userId);
+    List<AuthorityDTO> getAuthorityByUserId(@Param("userId")String userId);
 
     /**
      * 是否存在

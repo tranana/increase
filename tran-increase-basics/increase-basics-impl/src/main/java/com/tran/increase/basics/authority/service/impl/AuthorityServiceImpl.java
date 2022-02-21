@@ -9,6 +9,7 @@ import com.tran.increase.basics.authority.service.AuthorityService;
 import com.tran.increase.basics.base.configbean.TranRedisPrefix;
 import com.tran.increase.basics.base.result.AuthorityDTO;
 import com.tran.increase.basics.base.result.AuthorityResult;
+import com.tran.increase.basics.base.result.BaseAuthority;
 import com.tran.increase.basics.base.util.BaseStringUtil;
 import com.tran.increase.basics.base.util.TranRedisService;
 import com.tran.increase.basics.constant.Constant;
@@ -17,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author luxiangqian
@@ -39,7 +39,7 @@ public class AuthorityServiceImpl implements AuthorityService {
     private TranRedisService tranRedisService;
 
     @Override
-    public List<Map<String, Object>> getAuthorityInfo(AuthorityDTO authorityDTO) {
+    public List<AuthorityDTO> getAuthorityInfo(AuthorityDTO authorityDTO) {
         TranRedisPrefix redisPrefix = new TranRedisPrefix(Constant.REDIS_USER_AUTHORITY,86400);
         String userID = authorityDTO.getUserIds();
         // redis 中是否存在
@@ -48,9 +48,9 @@ public class AuthorityServiceImpl implements AuthorityService {
             tranRedisService.refresh(redisPrefix, userID);
             return tranRedisService.get(redisPrefix, userID, List.class);
         }else {
-            List<Map<String, Object>> authorityByUserId = tranBasicsAuthorityDAO.getAuthorityByUserId(userID);
-            tranRedisService.set(redisPrefix, userID, authorityByUserId);
-            return authorityByUserId;
+            List<AuthorityDTO> authority = tranBasicsAuthorityDAO.getAuthorityByUserId(userID);
+            tranRedisService.set(redisPrefix, userID, authority);
+            return authority;
         }
     }
 

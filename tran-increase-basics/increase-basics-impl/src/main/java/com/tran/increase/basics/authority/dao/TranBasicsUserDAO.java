@@ -5,8 +5,6 @@ import com.tran.increase.basics.authority.bean.TranBasicsUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-import java.util.Map;
 
 /**
  * 用户

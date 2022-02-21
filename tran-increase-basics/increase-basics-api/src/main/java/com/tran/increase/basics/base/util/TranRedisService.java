@@ -133,8 +133,13 @@ public class TranRedisService {
      * @return
      */
     public Long  refresh(TranRedisPrefix tranRedisPrefix, String key){
-
-        return 0L;
+        Jedis jedis = null;
+        try {
+            jedis = redisPoolFactory.JedisPoolFactory().getResource();
+            return jedis.expire(tranRedisPrefix.prefix+key,tranRedisPrefix.expirationTime);
+        }finally {
+            resultsJedisPool(jedis);
+        }
     }
 
     /**

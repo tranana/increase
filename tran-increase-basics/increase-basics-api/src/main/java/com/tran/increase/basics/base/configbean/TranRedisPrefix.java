@@ -1,6 +1,5 @@
 package com.tran.increase.basics.base.configbean;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
