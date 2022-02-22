@@ -24,7 +24,7 @@ public class TranRedisPrefix {
 
     public TranRedisPrefix(String prefix,int expirationTime) {
         this.expirationTime = expirationTime;
-        this.prefix = prefix;
+        this.prefix = prefix+"_";
     }
 
     public TranRedisPrefix(String prefix) {
@@ -33,4 +33,12 @@ public class TranRedisPrefix {
 
 
 
+    public void setExpirationTime(int expirationTime) {
+        this.expirationTime = expirationTime;
+    }
+
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix+"_";
+    }
 }

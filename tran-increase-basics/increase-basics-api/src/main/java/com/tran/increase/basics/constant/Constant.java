@@ -15,7 +15,7 @@ public class Constant {
     /**
      * 用户权限前缀
      */
-    public static final String REDIS_USER_AUTHORITY = "user.authority";
+    public static final String REDIS_USER_AUTHORITY = "TRAN:user:authority";
 
 
 }

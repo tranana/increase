@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 
+import java.util.List;
+
 /**
  * @author luxiangqian
  * 2022/2/19
@@ -172,6 +174,8 @@ public class TranRedisService {
             return (T) value;
         }else if ( clazz == long.class || clazz == Long.class){
             return (T)Long.valueOf(value);
+        }else if (clazz == List.class){
+            return (T)JSON.parseObject(value,List.class);
         } else {
             return JSON.toJavaObject(JSON.parseObject(value),clazz);
         }
